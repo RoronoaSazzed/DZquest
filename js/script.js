@@ -1,0 +1,1 @@
+$(document).ready(function(){var i=-10;$(".commonCharacteristics").click(function(){var t=$(".commonCharacteristics").index(this),e=".textDiv:eq("+t+")";t!=i&&($(".textDiv").hide(100),$(e).toggle(600),i=t)}),$(".landing").mouseup(function(t){var e=$("#cover");e.is(t.target)||0!==e.has(t.target).length||($(".textDiv").hide(400),i=-10)})});

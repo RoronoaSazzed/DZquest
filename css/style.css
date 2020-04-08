@@ -67,6 +67,8 @@ img:hover{
     width: 300px;
     padding: 30px;
     background-color: rgba(232,203,151,0.75);
+    display: none;
+    transform: translate(-50%, -50%);
 }
 
 #c1{
