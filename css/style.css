@@ -1,6 +1,5 @@
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
-/*font-family: 'Poppins', sans-serif;*/
 
 h3, p{
     font-family: 'Poppins', sans-serif;
@@ -10,7 +9,7 @@ h3, p{
 }
 
 h3{
-    font-size: 25px;
+    font-size: 20px;
 }
 
 p{
@@ -41,6 +40,8 @@ p{
     place-items: center;
     position: absolute;
     cursor: pointer;
+    -webkit-box-shadow: 0 0 10px #121212;
+            box-shadow: 0 0 10px #121212;
 }
 
 img{
@@ -56,21 +57,26 @@ img{
 img:hover{
     opacity: 1;
     -webkit-transform: translateX(-10px);
-        -ms-transform: translateX(-10px);
-            transform: translateX(-10px);
+    -ms-transform: translateX(-10px);
+    transform: translateX(-10px);
     cursor: pointer;
 }
 
 .textDiv{
     position: absolute;
-    min-height: 200px;
+    min-height: 450px;
     width: 300px;
     padding: 30px;
     background-color: rgba(232,203,151,0.75);
     display: none;
     -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-image: url(../images/logo_effect.png);
+    background-position: center;
+    background-size: cover;
+    -webkit-box-shadow: 0 0 20px grey;
+            box-shadow: 0 0 20px grey;
 }
 
 #c1{
@@ -78,15 +84,15 @@ img:hover{
     height: 12vh;
     width: 12vh;
     -webkit-box-shadow: 0 0 30px #836a5c;
-            box-shadow: 0 0 30px #836a5c;
+    box-shadow: 0 0 30px #836a5c;
     /*    top: 64%;
         left: 60%;*/
     top: 65%;
     left: 61%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 450ms;
-            animation: upDown 1s infinite alternate ease-in-out 450ms;
+    animation: upDown 1s infinite alternate ease-in-out 450ms;
     -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 #c2{
@@ -94,15 +100,15 @@ img:hover{
     height: 16vh;
     width: 16vh;
     -webkit-box-shadow: 0 0 30px #e9ab54;
-            box-shadow: 0 0 30px #e9ab54;
+    box-shadow: 0 0 30px #e9ab54;
     /*    top: 32%;
         left: 63%;*/
     top: 32%;
     left: 70%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 900ms;
-            animation: upDown 1s infinite alternate ease-in-out 900ms;
+    animation: upDown 1s infinite alternate ease-in-out 900ms;
     -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 #c3{
@@ -110,13 +116,13 @@ img:hover{
     height: 20vh;
     width: 20vh;
     -webkit-box-shadow: 0 0 30px #786176;
-            box-shadow: 0 0 30px #786176;
+    box-shadow: 0 0 30px #786176;
     top: 8%;
     left: 50%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 700ms;
-            animation: upDown 1s infinite alternate ease-in-out 700ms;
+    animation: upDown 1s infinite alternate ease-in-out 700ms;
     -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 #c4{
@@ -124,15 +130,15 @@ img:hover{
     height: 24vh;
     width: 24vh;
     -webkit-box-shadow: 0 0 30px #bcae9d;
-            box-shadow: 0 0 30px #bcae9d;
+    box-shadow: 0 0 30px #bcae9d;
     /*    top: 23%;
         left: 29%;*/
     top: 23%;
     left: 25%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 200ms;
-            animation: upDown 1s infinite alternate ease-in-out 200ms;
+    animation: upDown 1s infinite alternate ease-in-out 200ms;
     -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 #c5{
@@ -140,38 +146,38 @@ img:hover{
     height: 30vh;
     width: 30vh;
     -webkit-box-shadow: 0 0 30px #486081;
-            box-shadow: 0 0 30px #486081;
+    box-shadow: 0 0 30px #486081;
     /*    top: 57%;
         left: 29%;*/
     top: 60%;
     left: 30%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 1100ms;
-            animation: upDown 1s infinite alternate ease-in-out 1100ms;
+    animation: upDown 1s infinite alternate ease-in-out 1100ms;
     -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 @-webkit-keyframes upDown{
     0% {
         -webkit-transform: translateY(-10px);
-                transform: translateY(-10px);
+        transform: translateY(-10px);
     }
 
     100%{
         -webkit-transform: translateY(10px);
-                transform: translateY(10px);
+        transform: translateY(10px);
     }
 }
 
 @keyframes upDown{
     0% {
         -webkit-transform: translateY(-10px);
-                transform: translateY(-10px);
+        transform: translateY(-10px);
     }
 
     100%{
         -webkit-transform: translateY(10px);
-                transform: translateY(10px);
+        transform: translateY(10px);
     }
 }
 
