@@ -1,3 +1,32 @@
+<?php
+    require_once('PHPMailer/src/PHPMailer.php');
+    $isSent=false;
+    $info='some text'
+?>
+
+<?php
+
+ if (isset($_POST["formName"]) && $_POST["formName"]=="contact")
+ {
+    echo 'yes';
+
+    $check = getimagesize($_FILES["contact_image"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+ }
+ else if (isset($_POST["formName"]) && $_POST["formName"]=="get help")
+ {
+    echo 'yes1';
+ }
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -27,6 +56,25 @@
 <body>
 
     <div class="container-fluid landing">
+        <div class="row" style="z-index: 100; position: absolute;">
+
+            <div class="alert alert-dismissible col-md-12
+            <?php
+            if ($isSent)
+            {
+                echo 'alert-success';
+            }
+            else
+            {
+                echo 'alert-danger';
+            }
+            ?>
+            ">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong><?php echo $info; ?></strong>
+            </div>
+            
+        </div>
         <div id="cover" class="row">
             <div>
                 <a href="http://dzquest.org/"><img src="images/DZQuest.png" alt="Not Found"></a>
@@ -53,12 +101,26 @@
                 </div>
                 <!-- Name Section -->
 
+                <form method="post" enctype="multipart/form-data">
+
                 <div class="customForm">
                     <div class="one">
-                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="First Name" name="contact_fastname" value="<?php 
+                                        if ( isset($_POST["contact_fastname"]) && !$isSent)
+                                        {
+                                            echo $_POST["contact_fastname"];
+                                        }
+                                    ?>"
+                        >
                     </div>
                     <div class="two">
-                        <input type="text" placeholder="Last Name">
+                        <input type="text" placeholder="Last Name" name="contact_lastname" value="<?php 
+                                        if ( isset($_POST["contact_lastname"]) && !$isSent)
+                                        {
+                                            echo $_POST["contact_lastname"];
+                                        }
+                                    ?>"
+                        >
                     </div>
                 </div>
 
@@ -66,18 +128,39 @@
 
                 <div class="customForm">
                     <div class="one">
-                        <input type="email" placeholder="Mail Address">
+                        <input type="email" placeholder="Mail Address" name="contact_email" value="<?php 
+                                        if ( isset($_POST["contact_email"]) && !$isSent)
+                                        {
+                                            echo $_POST["contact_email"];
+                                        }
+                                    ?>" 
+                         >
                     </div>
                     <div class="two">
-                        <input type="tel" placeholder="Telephone number">
+                        <input type="tel" placeholder="Telephone number" name="contact_phone"
+                        value="<?php 
+                                        if ( isset($_POST["contact_phone"]) && !$isSent)
+                                        {
+                                            echo $_POST["contact_phone"];
+                                        }
+                                    ?>"
+                         >
                     </div>
                 </div>
 
                 <!-- Message Section -->
-                <textarea rows="4"></textarea>
+                <textarea rows="4" name="contact_message" placeholder="Your message"><?php 
+                            if ( isset($_POST["contact_message"]) && !$isSent)
+                            {
+                                echo $_POST["contact_message"];
+                            }
+                        ?></textarea>
                 <!-- Attachment Section -->
-                <input type="file">
+                <input type="file" name="contact_image">
+                <input type="text" hidden name="formName" value="contact">
                 <input class="submitBtn" type="submit" value="Send">
+
+            </form>
             </div>
             <div class="textDiv">
                 <div class="text-right text-danger closeButton"> 
@@ -427,51 +510,107 @@
                     <i class="fa fa-close" style="font-size:26px"></i> 
                 </div>
 
-                
-                <div class="customForm">
-                    <div class="one">
-                        <input type="text" placeholder="First Name">
+                <form method="post" enctype="multipart/form-data">
+
+                    <div class="customForm">
+                        <div class="one">
+                            <input type="text" placeholder="First Name" name="fistname"
+                            value="<?php 
+                                        if ( isset($_POST["fistname"]) && !$isSent)
+                                        {
+                                            echo $_POST["fistname"];
+                                        }
+                                    ?>"
+                            >
+                        </div>
+                        <div class="two">
+                            <input type="text" placeholder="Last Name" name="lastname"
+                            value="<?php 
+                                        if ( isset($_POST["lastname"]) && !$isSent)
+                                        {
+                                            echo $_POST["lastname"];
+                                        }
+                                    ?>"
+                            >
+                        </div>
                     </div>
-                    <div class="two">
-                        <input type="text" placeholder="Last Name">
+
+                    <!-- Mail + Phone No -->
+
+                    <div class="customForm">
+                        <div class="one">
+                            <input type="email" placeholder="Mail Address" name="email"
+                            value="<?php 
+                                        if ( isset($_POST["email"]) && !$isSent)
+                                        {
+                                            echo $_POST["email"];
+                                        }
+                                    ?>"
+                            >
+                        </div>
+                        <div class="two">
+                            <input type="tel" placeholder="Telephone number" name="phone"
+                            value="<?php 
+                                        if ( isset($_POST["phone"]) && !$isSent)
+                                        {
+                                            echo $_POST["phone"];
+                                        }
+                                    ?>"
+                            >
+                        </div>
                     </div>
-                </div>
 
-                <!-- Mail + Phone No -->
 
-                <div class="customForm">
-                    <div class="one">
-                        <input type="email" placeholder="Mail Address">
+                    <!-- City + Country + Current Location -->
+
+                    <div class="customForm">
+                        <div class="city">
+                            <input type="text" placeholder="City" name="city" 
+                            value="<?php 
+                                        if ( isset($_POST["city"]) && !$isSent)
+                                        {
+                                            echo $_POST["city"];
+                                        }
+                                    ?>"
+                             >
+                        </div>
+                        <div class="country">
+                            <input type="text" placeholder="Country" name="country" 
+                            value="<?php 
+                                        if ( isset($_POST["country"]) && !$isSent)
+                                        {
+                                            echo $_POST["country"];
+                                        }
+                                    ?>"
+                            >
+                        </div>
+                        <div class="currentLocation">
+                            <input type="text" placeholder="Current Location" name="location" value="<?php 
+                                        if ( isset($_POST["location"]) && !$isSent)
+                                        {
+                                            echo $_POST["location"];
+                                        }
+                                    ?>"
+                            >
+                        </div>
                     </div>
-                    <div class="two">
-                        <input type="tel" placeholder="Telephone number">
-                    </div>
-                </div>
-
-
-                <!-- City + Country + Current Location -->
-
-                <div class="customForm">
-                    <div class="city">
-                        <input type="text" placeholder="City">
-                    </div>
-                    <div class="country">
-                        <input type="text" placeholder="Country">
-                    </div>
-                    <div class="currentLocation">
-                        <input type="text" placeholder="Current Location">
-                    </div>
-                </div>
 
 
 
 
 
-                <!-- Message Section -->
-                <textarea rows="4"></textarea>
-                <!-- Attachment Section -->
-                <input type="file">
-                <input class="submitBtn" type="submit" value="Send">
+                    <!-- Message Section -->
+                    <textarea rows="4" name="message" placeholder="Your message"><?php 
+                            if ( isset($_POST["message"]) && !$isSent)
+                            {
+                                echo $_POST["message"];
+                            }
+                        ?></textarea>
+                    <!-- Attachment Section -->
+                    <input type="file" name="image">
+                    <input type="text" hidden name="formName" value="get help">
+                    <input class="submitBtn" type="submit" value="Send">
+                </form>
             </div>
         </div>
     </div>
@@ -491,3 +630,30 @@
 </body>
 
 </html>
+
+<?php
+
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+
+// try
+// {
+//     $email = new PHPMailer();
+//     $email->SetFrom('david@dzquest.org', 'David Zandi'); //Name is optional
+//     $email->Subject   = 'Dzquest Update';
+//     $email->Body      = 'test';
+//     // $email->Body      = $bodytext;
+//     $email->AddAddress( 'imranashik50@gmail.com' );
+
+//     // $file_to_attach = 'PATH_OF_YOUR_FILE_HERE';
+
+//     // $email->AddAttachment( $file_to_attach , 'NameOfFile.pdf' );
+
+//     return $email->Send();
+// }
+
+// catch (Exception $e) {
+//     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// }
+
+?>
