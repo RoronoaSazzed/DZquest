@@ -6,6 +6,7 @@ h3, p{
     font-weight: 300;
     color: white;
     line-height: 30px;
+    margin-bottom: 0px;
 }
 
 h3{
@@ -13,8 +14,10 @@ h3{
 }
 
 p{
-    font-size: 18px;
+    font-size: 13px;
     color: #121212;
+    text-align: justify;
+    letter-spacing: .5px;
 }
 
 .landing{
@@ -41,7 +44,8 @@ p{
     position: absolute;
     cursor: pointer;
     -webkit-box-shadow: 0 0 10px #121212;
-            box-shadow: 0 0 10px #121212;
+    box-shadow: 0 0 10px #121212;
+    transition: 250ms;
 }
 
 img{
@@ -61,22 +65,22 @@ img:hover{
     transform: translateX(-10px);
     cursor: pointer;
 }
-
+.cover{
+    position: relative;
+}
 .textDiv{
     position: absolute;
-    min-height: 450px;
-    width: 300px;
+    width: 50%;
+    max-height: 100vh;
     padding: 30px;
     background-color: rgba(232,203,151,0.75);
     display: none;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-image: url(../images/logo_effect.png);
-    background-position: center;
-    background-size: cover;
     -webkit-box-shadow: 0 0 20px grey;
-            box-shadow: 0 0 20px grey;
+    box-shadow: 0 0 20px grey;
+    border-radius: 20px;
 }
 
 #c1{
@@ -95,6 +99,11 @@ img:hover{
     animation-fill-mode: both;
 }
 
+#c1:hover{
+    background-color: #69554a;
+    box-shadow: 0 0 30px #69554a;
+}
+
 #c2{
     background-color: #e9ab54;
     height: 16vh;
@@ -111,6 +120,11 @@ img:hover{
     animation-fill-mode: both;
 }
 
+#c2:hover{
+    background-color: #e59b34;
+    box-shadow: 0 0 30px #e59b34;
+}
+
 #c3{
     background-color: #786176;
     height: 20vh;
@@ -123,6 +137,32 @@ img:hover{
     animation: upDown 1s infinite alternate ease-in-out 700ms;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+}
+
+#c3:hover{
+    background-color: #635061;
+    box-shadow: 0 0 30px #635061;
+}
+
+#locations{
+    display: flex;
+}
+
+#row1,
+#row2,
+#row3{
+    flex: 1;
+    padding: 15px;
+}
+
+.capsule{
+    display: flex;
+}
+
+.date,
+.locationSpecific{
+    flex: 1;
+    padding: 5px;
 }
 
 #c4{
@@ -141,6 +181,11 @@ img:hover{
     animation-fill-mode: both;
 }
 
+#c4:hover{
+    background-color: #cbc0b3;
+    box-shadow: 0 0 30px #cbc0b3;
+}
+
 #c5{
     background-color: #486081;
     height: 30vh;
@@ -155,6 +200,11 @@ img:hover{
     animation: upDown 1s infinite alternate ease-in-out 1100ms;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+}
+
+#c5:hover{
+    background-color: #405573;
+    box-shadow: 0 0 30px #405573;
 }
 
 @-webkit-keyframes upDown{
@@ -181,14 +231,29 @@ img:hover{
     }
 }
 
+
+@media only screen and (max-width: 1690px){
+    .textDiv{
+        width: 90%;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     h3 {
-        font-size: 17px;
+        font-size: 16px;
     }
     #c4{
         left: 19%;
     }
     #c5{
         left: 10%;
+    }
+
+    .textDiv{
+        width: 90%;
+    }
+    
+    #locations{
+        flex-direction: column;
     }
 }
