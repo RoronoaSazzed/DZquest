@@ -50,8 +50,8 @@ p{
 
 img{
     position: absolute;
-    bottom: 5%;
-    right: 5%;
+    top: 5%;
+    left: 5%;
     opacity: .75;
     -webkit-transition: 500ms;
     -o-transition: 500ms;
@@ -60,9 +60,9 @@ img{
 
 img:hover{
     opacity: 1;
-    -webkit-transform: translateX(-10px);
-    -ms-transform: translateX(-10px);
-    transform: translateX(-10px);
+    -webkit-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    transform: translateX(10px);
     cursor: pointer;
 }
 .cover{
@@ -103,6 +103,47 @@ img:hover{
     background-color: #69554a;
     box-shadow: 0 0 30px #69554a;
 }
+
+.customForm{
+    display: flex;
+}
+
+.one, .two{
+    flex: 1;
+}
+.one{
+    margin-right: 10px;
+}
+.two{
+    margin-left: 10px;
+}
+input,
+textarea{
+    background-color: transparent;
+    border: 1px solid #f1e0c1;
+    width: 100%;
+    margin: 10px;
+}
+
+
+::placeholder{
+    padding-left: 15px;
+    color: white;
+}
+
+.submitBtn{
+    background-color: rgba(245, 245, 245, 0.75);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: 250ms;
+}
+
+#submitBtn:hover{
+    background-color: rgba(245, 245, 245, 1);
+    cursor: pointer;
+}
+
+
 
 #c2{
     background-color: #e9ab54;
@@ -166,45 +207,70 @@ img:hover{
 }
 
 #c4{
+    background-color: #486081;
+    height: 30vh;
+    width: 30vh;
+    -webkit-box-shadow: 0 0 30px #486081;
+    box-shadow: 0 0 30px #486081;
+    top: 23%;
+    left: 25%;
+    -webkit-animation: upDown 1s infinite alternate ease-in-out 1100ms;
+    animation: upDown 1s infinite alternate ease-in-out 1100ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    /*    background-color: #bcae9d;
+        height: 24vh;
+        width: 24vh;
+        -webkit-box-shadow: 0 0 30px #bcae9d;
+        box-shadow: 0 0 30px #bcae9d;
+        top: 23%;
+        left: 25%;
+        -webkit-animation: upDown 1s infinite alternate ease-in-out 200ms;
+        animation: upDown 1s infinite alternate ease-in-out 200ms;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;*/
+}
+
+#c4:hover{
+    background-color: #405573;
+    box-shadow: 0 0 30px #405573;
+    /*    background-color: #cbc0b3;
+        box-shadow: 0 0 30px #cbc0b3;*/
+}
+
+#c5{
     background-color: #bcae9d;
     height: 24vh;
     width: 24vh;
     -webkit-box-shadow: 0 0 30px #bcae9d;
     box-shadow: 0 0 30px #bcae9d;
-    /*    top: 23%;
-        left: 29%;*/
-    top: 23%;
-    left: 25%;
+    top: 60%;
+    left: 30%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 200ms;
     animation: upDown 1s infinite alternate ease-in-out 200ms;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
 
-#c4:hover{
+#c5:hover{
     background-color: #cbc0b3;
     box-shadow: 0 0 30px #cbc0b3;
 }
 
-#c5{
-    background-color: #486081;
-    height: 30vh;
-    width: 30vh;
-    -webkit-box-shadow: 0 0 30px #486081;
-    box-shadow: 0 0 30px #486081;
-    /*    top: 57%;
-        left: 29%;*/
-    top: 60%;
-    left: 30%;
-    -webkit-animation: upDown 1s infinite alternate ease-in-out 1100ms;
-    animation: upDown 1s infinite alternate ease-in-out 1100ms;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+.city,
+.country,
+.currentLocation{
+    flex: 1;
 }
 
-#c5:hover{
-    background-color: #405573;
-    box-shadow: 0 0 30px #405573;
+.city,
+.country{
+    margin-right: 10px;
+}
+
+.country,
+.currentLocation{
+    margin-left: 10px;
 }
 
 @-webkit-keyframes upDown{
@@ -252,8 +318,26 @@ img:hover{
     .textDiv{
         width: 90%;
     }
-    
+
     #locations{
         flex-direction: column;
+    }
+    
+    ::placeholder{
+        font-size: 10px;
+    }
+    
+    #c4{
+        height: 25vh;
+        width: 25vh;
+        top: 30%;
+        left: 10%;
+    }
+    
+    #c5{
+        height: 20vh;
+        width: 20vh;
+        top: 70%;
+        left: 5%;
     }
 }
