@@ -72,6 +72,11 @@ img:hover{
 .cover{
     position: relative;
 }
+
+.closeButton i
+{
+    cursor: pointer;
+}
 .textDiv{
     position: absolute;
     width: 50%;
