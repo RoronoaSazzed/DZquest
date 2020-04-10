@@ -7,6 +7,7 @@
     $isSent=false;
     $info='some text';
     $filePath = "temp_files/123.PNG";
+    $shortname="123.PNG";
     $maxFileSize= 19097152;
 
     $supported_file_types=array(
@@ -30,6 +31,7 @@
             if($tmpFilePath != "")
             {
                 $filePath = "temp_files/".$_FILES[$imageTagName]['name'];
+                $shortname = $_FILES[$imageTagName]['name'];
 
                 if ( !in_array( strtolower( $_FILES[$imageTagName]['type'] ) , $supported_file_types ) )
                 {
@@ -42,10 +44,40 @@
                 }
 
                 else if(move_uploaded_file($tmpFilePath, $filePath)) {
-                    print_r($_FILES[$imageTagName]);
-
+                    // print_r($_FILES[$imageTagName]);
+                    $info='Image uploaded uccessfully. ';
                 }
             }
+        }
+    }
+
+
+    function mailSend($bodytext)
+    {
+        global $isSent, $info, $filePath, $shortname ;
+
+        try
+        {
+            $email = new PHPMailer();
+            $email->SetFrom('david@dzquest.org', 'dzquest.org'); //Name is optional
+            $email->Subject = 'Dzquest Update';
+            // $email->Body = 'test';
+            $email->Body = $bodytext;
+            $email->AddAddress( 'imranashik50@gmail.com' );
+
+            $email->AddAttachment( $filePath , $shortname ); //('folder/abc.pdf', 'abc.pdf')
+
+            $email->Send();
+
+            $info='Successfully sent.';
+            $isSent=True;
+            $_POST = array();
+        }
+
+        catch (Exception $e) 
+        {
+            // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $info='Sorry!! Something went wrong.';
         }
     }
 ?>
@@ -54,16 +86,136 @@
 
  if (isset($_POST["formName"]) && $_POST["formName"]=="contact")
  {
-    echo 'yes';
+    // echo 'yes';
 
-    uploadImage('contact_image');
+    if ( empty( $_POST["contact_fastname"] ) )
+    {
+        $info = 'Please enter First Name';
+    }
+    else if ( empty( $_POST["contact_lastname"] ) )
+    {
+        $info = 'Please enter Last Name';
+    }
+    else if ( empty( $_POST["contact_email"] ) || !filter_var( $_POST["contact_email"] , FILTER_VALIDATE_EMAIL) )
+    {
+        $info = 'Please enter Email properly';
+    }
+    else if ( empty( $_POST["contact_phone"] ) )
+    {
+        $info = 'Please enter Telephone number';
+    }
+    else if ( empty( $_POST["contact_message"] ) )
+    {
+        $info = 'Please enter Message';
+    }
+    else
+    {
+        uploadImage('contact_image');
+        $mailBody=
+        '<html>
+        <head>
+            <title>Mail response</title>
+        </head>
+        <body>
+
+            <div>
+                <div style="text-align: center;">
+                    <h3> Response from Contact page </h3>
+                </div>
+
+                    <p>First Name : <mark>'+ $_POST["contact_fastname"] +'</mark></p><br>
+                    <p>Last Name : <mark>'+ $_POST["contact_lastname"] +'</mark></p><br>
+                    <p>E-Mail Address : <mark>'+ $_POST["contact_email"] +'</mark></p><br>
+                    <p>Telephone number : <mark>'+ $_POST["contact_phone"] +'</mark></p><br>
+                    <p>Message : <mark>'+ $_POST["contact_message"] +'</mark></p><br>
+
+
+                    <p>Note: <b>This is an automatic response. Do not reply to this mail.</b></p>
+                    <br>
+                    <p> - DZquest Development team. </p>
+            </div>
+
+        </body>
+        </html>';
+
+        // mailSend( $mailBody );
+    }
 
  }
  else if (isset($_POST["formName"]) && $_POST["formName"]=="get help")
  {
-    echo 'yes-one';
+    // echo 'yes-one';
 
-    uploadImage('image');
+    if ( empty( $_POST["fistname"] ) )
+    {
+        $info = 'Please enter First Name';
+    }
+    else if ( empty( $_POST["lastname"] ) )
+    {
+        $info = 'Please enter Last Name';
+    }
+    else if ( empty( $_POST["email"] ) || !filter_var( $_POST["email"] , FILTER_VALIDATE_EMAIL) )
+    {
+        $info = 'Please enter Email properly';
+    }
+    else if ( empty( $_POST["phone"] ) )
+    {
+        $info = 'Please enter Telephone number';
+    }
+    else if ( empty( $_POST["city"] ) )
+    {
+        $info = 'Please enter City';
+    }
+    else if ( empty( $_POST["country"] ) )
+    {
+        $info = 'Please enter Country';
+    }
+    else if ( empty( $_POST["location"] ) )
+    {
+        $info = 'Please enter Current Location';
+    }
+    else if ( empty( $_POST["message"] ) )
+    {
+        $info = 'Please enter Message';
+    }
+    else
+    {
+        uploadImage('image');
+
+        $mailBody=
+        '<html>
+        <head>
+            <title>Mail response</title>
+        </head>
+        <body>
+
+            <div>
+                <div style="text-align: center;">
+                    <h3> Response from Get-Help page </h3>
+                </div>
+
+                    <p>First Name : <mark>'+ $_POST["fistname"] +'</mark></p><br>
+                    <p>Last Name : <mark>'+ $_POST["lastname"] +'</mark></p><br>
+                    <p>E-Mail Address : <mark>'+ $_POST["email"] +'</mark></p><br>
+                    <p>Telephone number : <mark>'+ $_POST["phone"] +'</mark></p><br>
+
+                    <p>City : <mark>'+ $_POST["city"] +'</mark></p><br>
+                    <p>Country : <mark>'+ $_POST["country"] +'</mark></p><br>
+                    <p>Current Location : <mark>'+ $_POST["location"] +'</mark></p><br>
+
+                    <p>Message : <mark>'+ $_POST["message"] +'</mark></p><br>
+
+
+                    <p>Note: <b>This is an automatic response. Do not reply to this mail.</b></p>
+                    <br>
+                    <p> - DZquest Development team. </p>
+            </div>
+
+        </body>
+        </html>';
+
+        // mailSend( $mailBody );
+    }
  }
 
 
@@ -98,25 +250,31 @@
 <body>
 
     <div class="container-fluid landing">
-        <div class="row alert-div">
+        <?php
+            if ($info != 'some text')
+                {
+        ?>
+            <div class="row alert-div">
 
-            <div class="alert alert-dismissible col-md-12
-            <?php
-            if ($isSent)
-            {
-                echo 'alert-success';
-            }
-            else
-            {
-                echo 'alert-danger';
-            }
-            ?>
-            ">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong><?php echo $info; ?></strong>
+                <div class="alert alert-dismissible col-md-12
+                <?php
+                if ($isSent)
+                {
+                    echo 'alert-success';
+                }
+                else
+                {
+                    echo 'alert-danger';
+                }
+                ?>
+                ">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong><?php echo $info; ?></strong>
+                </div>
+                
             </div>
-            
-        </div>
+        <?php } ?>
+
         <div id="cover" class="row">
             <div>
                 <a href="http://dzquest.org/"><img src="images/DZQuest.png" alt="Not Found"></a>
@@ -170,7 +328,7 @@
 
                 <div class="customForm">
                     <div class="one">
-                        <input type="email" placeholder="Mail Address" name="contact_email" value="<?php 
+                        <input type="email" placeholder="E-Mail Address" name="contact_email" value="<?php 
                                         if ( isset($_POST["contact_email"]) && !$isSent)
                                         {
                                             echo $_POST["contact_email"];
@@ -581,7 +739,7 @@
 
                     <div class="customForm">
                         <div class="one">
-                            <input type="email" placeholder="Mail Address" name="email"
+                            <input type="email" placeholder="E-Mail Address" name="email"
                             value="<?php 
                                         if ( isset($_POST["email"]) && !$isSent)
                                         {
@@ -675,29 +833,9 @@
 
 <?php
 
-// try
-// {
-//     $email = new PHPMailer();
-//     $email->SetFrom('david@dzquest.org', 'David Zandi'); //Name is optional
-//     $email->Subject   = 'Dzquest Update';
-//     $email->Body      = 'test';
-//     // $email->Body      = $bodytext;
-//     $email->AddAddress( 'imranashik50@gmail.com' );
+if ( file_exists( $filePath ) )
+    {
+        unlink($filePath);
+    }
 
-//     // $file_to_attach = 'PATH_OF_YOUR_FILE_HERE';
-
-//     // $email->AddAttachment( $file_to_attach , 'NameOfFile.pdf' );
-
-//     return $email->Send();
-// }
-
-// catch (Exception $e) {
-//     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-// }
-
-
-// if ( file_exists( $filePath ) )
-//     {
-//         unlink($filePath);
-//     }
 ?>
