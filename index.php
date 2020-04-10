@@ -1,7 +1,16 @@
 <?php
     require_once('PHPMailer/src/PHPMailer.php');
     $isSent=false;
-    $info='some text'
+    $info='some text';
+
+    $supported_file_types=array(
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'text/plain',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+
+    );
 ?>
 
 <?php
@@ -10,13 +19,27 @@
  {
     echo 'yes';
 
-    $check = getimagesize($_FILES["contact_image"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
+    if (count($_FILES['contact_image']['name']) > 0)
+    {
+        $tmpFilePath = $_FILES['contact_image']['tmp_name'];
+        if($tmpFilePath != "")
+        {
+            $shortname = $_FILES['contact_image']['name'];
+            $filePath = "temp_files/".$_FILES['contact_image']['name'];
+
+            if ( !in_array( $_FILES['contact_image']['type'] , $supported_file_types ) )
+            {
+                $info = 'Only PNG, JPEG, GIF, DOCX, TXT files are supported.';
+            }
+
+            else if(move_uploaded_file($tmpFilePath, $filePath)) {
+
+                // echo '<br>uploaded: '+$shortname;
+                // echo '-> '+$_FILES['contact_image']['size'];
+                print_r($_FILES['contact_image']);
+
+            }
+        }
     }
  }
  else if (isset($_POST["formName"]) && $_POST["formName"]=="get help")
