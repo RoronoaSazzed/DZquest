@@ -311,7 +311,7 @@
                                             echo $_POST["contact_fastname"];
                                         }
                                     ?>"
-                        >
+                        required>
                     </div>
                     <div class="two">
                         <input type="text" placeholder="Last Name" name="contact_lastname" value="<?php 
@@ -320,7 +320,7 @@
                                             echo $_POST["contact_lastname"];
                                         }
                                     ?>"
-                        >
+                        required>
                     </div>
                 </div>
 
@@ -334,7 +334,7 @@
                                             echo $_POST["contact_email"];
                                         }
                                     ?>" 
-                         >
+                         required>
                     </div>
                     <div class="two">
                         <input type="tel" placeholder="Telephone number" name="contact_phone"
@@ -344,12 +344,12 @@
                                             echo $_POST["contact_phone"];
                                         }
                                     ?>"
-                         >
+                         required>
                     </div>
                 </div>
 
                 <!-- Message Section -->
-                <textarea rows="4" name="contact_message" placeholder="Your message"><?php 
+            <textarea rows="4" name="contact_message" placeholder="Your message" required><?php 
                             if ( isset($_POST["contact_message"]) && !$isSent)
                             {
                                 echo $_POST["contact_message"];
@@ -721,7 +721,7 @@
                                             echo $_POST["fistname"];
                                         }
                                     ?>"
-                            >
+                            required>
                         </div>
                         <div class="two">
                             <input type="text" placeholder="Last Name" name="lastname"
@@ -731,7 +731,7 @@
                                             echo $_POST["lastname"];
                                         }
                                     ?>"
-                            >
+                            required>
                         </div>
                     </div>
 
@@ -746,7 +746,7 @@
                                             echo $_POST["email"];
                                         }
                                     ?>"
-                            >
+                            required>
                         </div>
                         <div class="two">
                             <input type="tel" placeholder="Telephone number" name="phone"
@@ -756,7 +756,7 @@
                                             echo $_POST["phone"];
                                         }
                                     ?>"
-                            >
+                            required>
                         </div>
                     </div>
 
@@ -772,7 +772,7 @@
                                             echo $_POST["city"];
                                         }
                                     ?>"
-                             >
+                             required>
                         </div>
                         <div class="country">
                             <input type="text" placeholder="Country" name="country" 
@@ -782,7 +782,7 @@
                                             echo $_POST["country"];
                                         }
                                     ?>"
-                            >
+                            required>
                         </div>
                         <div class="currentLocation">
                             <input type="text" placeholder="Current Location" name="location" value="<?php 
@@ -791,7 +791,7 @@
                                             echo $_POST["location"];
                                         }
                                     ?>"
-                            >
+                            required>
                         </div>
                     </div>
 
@@ -800,7 +800,7 @@
 
 
                     <!-- Message Section -->
-                    <textarea rows="4" name="message" placeholder="Your message"><?php 
+                    <textarea rows="4" name="message" placeholder="Your message" required><?php 
                             if ( isset($_POST["message"]) && !$isSent)
                             {
                                 echo $_POST["message"];
