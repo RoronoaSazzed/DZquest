@@ -1,16 +1,53 @@
 <?php
     require_once('PHPMailer/src/PHPMailer.php');
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
     $isSent=false;
     $info='some text';
+    $filePath = "temp_files/123.PNG";
+    $maxFileSize= 19097152;
 
     $supported_file_types=array(
         'image/jpeg',
+        'image/jpg',
         'image/png',
         'image/gif',
         'text/plain',
+        'application/pdf',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
     );
+
+    function uploadImage($imageTagName)
+    {
+        global $info, $filePath, $maxFileSize, $supported_file_types ;
+
+        if (count($_FILES[$imageTagName]['name']) > 0)
+        {
+            $tmpFilePath = $_FILES[$imageTagName]['tmp_name'];
+            if($tmpFilePath != "")
+            {
+                $filePath = "temp_files/".$_FILES[$imageTagName]['name'];
+
+                if ( !in_array( strtolower( $_FILES[$imageTagName]['type'] ) , $supported_file_types ) )
+                {
+                    $info = 'Only PNG, JPEG, GIF, DOCX, TXT, PDF files are supported.';
+                }
+
+                else if ( $_FILES[$imageTagName]['size'] > $maxFileSize) 
+                {
+                    $info = 'Max file size would be 19 MB.';
+                }
+
+                else if(move_uploaded_file($tmpFilePath, $filePath)) {
+                    print_r($_FILES[$imageTagName]);
+
+                }
+            }
+        }
+    }
 ?>
 
 <?php
@@ -19,32 +56,14 @@
  {
     echo 'yes';
 
-    if (count($_FILES['contact_image']['name']) > 0)
-    {
-        $tmpFilePath = $_FILES['contact_image']['tmp_name'];
-        if($tmpFilePath != "")
-        {
-            $shortname = $_FILES['contact_image']['name'];
-            $filePath = "temp_files/".$_FILES['contact_image']['name'];
+    uploadImage('contact_image');
 
-            if ( !in_array( $_FILES['contact_image']['type'] , $supported_file_types ) )
-            {
-                $info = 'Only PNG, JPEG, GIF, DOCX, TXT files are supported.';
-            }
-
-            else if(move_uploaded_file($tmpFilePath, $filePath)) {
-
-                // echo '<br>uploaded: '+$shortname;
-                // echo '-> '+$_FILES['contact_image']['size'];
-                print_r($_FILES['contact_image']);
-
-            }
-        }
-    }
  }
  else if (isset($_POST["formName"]) && $_POST["formName"]=="get help")
  {
-    echo 'yes1';
+    echo 'yes-one';
+
+    uploadImage('image');
  }
 
 
@@ -79,7 +98,7 @@
 <body>
 
     <div class="container-fluid landing">
-        <div class="row" style="z-index: 100; position: absolute;">
+        <div class="row alert-div">
 
             <div class="alert alert-dismissible col-md-12
             <?php
@@ -656,9 +675,6 @@
 
 <?php
 
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\Exception;
-
 // try
 // {
 //     $email = new PHPMailer();
@@ -679,4 +695,9 @@
 //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 // }
 
+
+// if ( file_exists( $filePath ) )
+//     {
+//         unlink($filePath);
+//     }
 ?>
