@@ -44,7 +44,7 @@
 
                 else if(move_uploaded_file($tmpFilePath, $filePath)) {
                     // print_r($_FILES[$imageTagName]);
-                    $info='Image uploaded uccessfully. ';
+                    $info='Image uploaded successfully. ';
                 }
             }
         }
@@ -59,12 +59,17 @@
         {
             $email = new PHPMailer();
             $email->SetFrom('david@dzquest.org', 'dzquest.org'); //Name is optional
+            $email->isHTML(true); 
             $email->Subject = 'Dzquest Update';
             // $email->Body = 'test';
             $email->Body = $bodytext;
             $email->AddAddress( 'imranashik50@gmail.com' );
+            $email->addCC('mysticyagami7@gmail.com ');
 
-            $email->AddAttachment( $filePath , $shortname ); //('folder/abc.pdf', 'abc.pdf')
+            if ( file_exists( $filePath ) )
+            {
+                $email->AddAttachment( $filePath , $shortname ); //('folder/abc.pdf', 'abc.pdf')
+            }
 
             $email->Send();
 
