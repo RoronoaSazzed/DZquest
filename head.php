@@ -20,17 +20,32 @@
 
     );
 
+    function my_data_sanitize($str)
+    {
+        return filter_var($str, FILTER_SANITIZE_STRING);
+    }
+
+    function generateRandomString($length = 5) {
+        $characters = '0123456789_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = 'IMG';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     function uploadImage($imageTagName)
     {
-        global $info, $filePath, $maxFileSize, $supported_file_types ;
+        global $info, $filePath, $maxFileSize, $supported_file_types, $shortname ;
 
         if (count($_FILES[$imageTagName]['name']) > 0)
         {
             $tmpFilePath = $_FILES[$imageTagName]['tmp_name'];
             if($tmpFilePath != "")
             {
-                $filePath = "temp_files/".$_FILES[$imageTagName]['name'];
-                $shortname = $_FILES[$imageTagName]['name'];
+                $shortname = generateRandomString().$_FILES[$imageTagName]['name'];
+                $filePath = "temp_files/".$shortname;
 
                 if ( !in_array( strtolower( $_FILES[$imageTagName]['type'] ) , $supported_file_types ) )
                 {
@@ -58,7 +73,7 @@
         try
         {
             $email = new PHPMailer();
-            $email->SetFrom('david@dzquest.org', 'dzquest.org'); //Name is optional
+            $email->SetFrom('noreply@dzquest.org', 'dzquest.org'); //Name is optional
             $email->isHTML(true); 
             $email->Subject = 'Dzquest Update';
             // $email->Body = 'test';

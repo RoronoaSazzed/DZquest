@@ -33,11 +33,11 @@
                     <h3> Response from Contact page </h3>
                 </div>
 
-                    <p>First Name : <mark>'. $_POST["contact_fastname"] .'</mark></p><br>
-                    <p>Last Name : <mark>'. $_POST["contact_lastname"] .'</mark></p><br>
-                    <p>E-Mail Address : <mark>'. $_POST["contact_email"] .'</mark></p><br>
-                    <p>Telephone number : <mark>'. $_POST["contact_phone"] .'</mark></p><br>
-                    <p>Message : <mark>'. $_POST["contact_message"] .'</mark></p><br>
+                    <p>First Name : <mark>'. my_data_sanitize($_POST["contact_fastname"]) .'</mark></p><br>
+                    <p>Last Name : <mark>'. my_data_sanitize($_POST["contact_lastname"]) .'</mark></p><br>
+                    <p>E-Mail Address : <mark>'. my_data_sanitize($_POST["contact_email"]) .'</mark></p><br>
+                    <p>Telephone number : <mark>'. my_data_sanitize($_POST["contact_phone"]) .'</mark></p><br>
+                    <p>Message : <mark>'. my_data_sanitize($_POST["contact_message"]) .'</mark></p><br>
 
 
                     <p>Note: <b>This is an automatic response. Do not reply to this mail.</b></p>
@@ -97,16 +97,16 @@
                     <h3> Response from Get-Help page </h3>
                 </div>
 
-                    <p>First Name : <mark>'. $_POST["fistname"] .'</mark></p><br>
-                    <p>Last Name : <mark>'. $_POST["lastname"] .'</mark></p><br>
-                    <p>E-Mail Address : <mark>'. $_POST["email"] .'</mark></p><br>
-                    <p>Telephone number : <mark>'. $_POST["phone"] .'</mark></p><br>
+                    <p>First Name : <mark>'. my_data_sanitize($_POST["fistname"]) .'</mark></p><br>
+                    <p>Last Name : <mark>'. my_data_sanitize($_POST["lastname"]) .'</mark></p><br>
+                    <p>E-Mail Address : <mark>'. my_data_sanitize($_POST["email"]) .'</mark></p><br>
+                    <p>Telephone number : <mark>'. my_data_sanitize($_POST["phone"]) .'</mark></p><br>
 
-                    <p>City : <mark>'. $_POST["city"] .'</mark></p><br>
-                    <p>Country : <mark>'. $_POST["country"] .'</mark></p><br>
-                    <p>Current Location : <mark>'. $_POST["location"] .'</mark></p><br>
+                    <p>City : <mark>'. my_data_sanitize($_POST["city"]) .'</mark></p><br>
+                    <p>Country : <mark>'. my_data_sanitize($_POST["country"] ).'</mark></p><br>
+                    <p>Current Location : <mark>'. my_data_sanitize($_POST["location"] ).'</mark></p><br>
 
-                    <p>Message : <mark>'. $_POST["message"] .'</mark></p><br>
+                    <p>Message : <mark>'. my_data_sanitize($_POST["message"]) .'</mark></p><br>
 
 
                     <p>Note: <b>This is an automatic response. Do not reply to this mail.</b></p>
