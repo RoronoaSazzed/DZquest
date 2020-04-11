@@ -7,7 +7,7 @@
     $info='some text';
     $filePath = "temp_files/123.PNG";
     $shortname="123.PNG";
-    $maxFileSize= 19097152;
+    $maxFileSize= 2097152;
 
     $supported_file_types=array(
         'image/jpeg',
@@ -54,7 +54,7 @@
 
                 else if ( $_FILES[$imageTagName]['size'] > $maxFileSize) 
                 {
-                    $info = 'Max file size would be 19 MB.';
+                    $info = 'Max file size would be 2 MB.';
                 }
 
                 else if(move_uploaded_file($tmpFilePath, $filePath)) {
@@ -86,11 +86,14 @@
                 $email->AddAttachment( $filePath , $shortname ); //('folder/abc.pdf', 'abc.pdf')
             }
 
-            $email->Send();
+            if ( $info != 'Max file size would be 2 MB.' )
+            {
+                $email->Send();
 
-            $info='Successfully sent.';
-            $isSent=True;
-            $_POST = array();
+                $info='Successfully sent.';
+                $isSent=True;
+                $_POST = array();
+            }
         }
 
         catch (Exception $e) 
