@@ -2,6 +2,8 @@
 
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 
 h3, p{
     font-family: 'Poppins', sans-serif;
@@ -12,7 +14,7 @@ h3, p{
 }
 
 h3{
-    font-size: 20px;
+    font-size: 21px;
 }
 
 p{
@@ -102,12 +104,10 @@ img:hover{
 
 #c1{
     background-color: #836a5c;
-    height: 12vh;
-    width: 12vh;
+    height: 16vh;
+    width: 16vh;
     -webkit-box-shadow: 0 0 30px #836a5c;
     box-shadow: 0 0 30px #836a5c;
-    /*    top: 64%;
-        left: 60%;*/
     top: 65%;
     left: 61%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 450ms;
@@ -195,12 +195,10 @@ textarea{
 
 #c2{
     background-color: #e9ab54;
-    height: 16vh;
-    width: 16vh;
+    height: 18vh;
+    width: 18vh;
     -webkit-box-shadow: 0 0 30px #e9ab54;
     box-shadow: 0 0 30px #e9ab54;
-    /*    top: 32%;
-        left: 63%;*/
     top: 32%;
     left: 70%;
     -webkit-animation: upDown 1s infinite alternate ease-in-out 900ms;
@@ -217,8 +215,8 @@ textarea{
 
 #c3{
     background-color: #786176;
-    height: 20vh;
-    width: 20vh;
+    height: 22vh;
+    width: 22vh;
     -webkit-box-shadow: 0 0 30px #786176;
     box-shadow: 0 0 30px #786176;
     top: 8%;
@@ -279,31 +277,20 @@ textarea{
     animation: upDown 1s infinite alternate ease-in-out 1100ms;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    /*    background-color: #bcae9d;
-        height: 24vh;
-        width: 24vh;
-        -webkit-box-shadow: 0 0 30px #bcae9d;
-        box-shadow: 0 0 30px #bcae9d;
-        top: 23%;
-        left: 25%;
-        -webkit-animation: upDown 1s infinite alternate ease-in-out 200ms;
-        animation: upDown 1s infinite alternate ease-in-out 200ms;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;*/
+    
 }
 
 #c4:hover{
     background-color: #405573;
     -webkit-box-shadow: 0 0 30px #405573;
             box-shadow: 0 0 30px #405573;
-    /*    background-color: #cbc0b3;
-        box-shadow: 0 0 30px #cbc0b3;*/
+
 }
 
 #c5{
     background-color: #bcae9d;
-    height: 24vh;
-    width: 24vh;
+    height: 25vh;
+    width: 25vh;
     -webkit-box-shadow: 0 0 30px #bcae9d;
     box-shadow: 0 0 30px #bcae9d;
     top: 60%;
@@ -362,6 +349,14 @@ textarea{
     }
 }
 
+.closeButton i
+{
+    color : white;
+}
+.closeButton i:hover
+{
+    color : red;
+}
 
 @media only screen and (max-width: 1690px){
     .textDiv{
@@ -369,9 +364,11 @@ textarea{
     }
 }
 
+
+
 @media only screen and (max-width: 600px) {
     h3 {
-        font-size: 13px;
+        font-size: 15px;
     }
     
     #c1{
@@ -430,4 +427,9 @@ textarea{
         top: 70%;
         left: 5%;
     }
+    #row2,
+    #row3,
+    #row4{
+        display: none;
+}
 }

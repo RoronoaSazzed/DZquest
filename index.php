@@ -80,7 +80,7 @@
             </div>
             <div class="textDiv">
 
-                <div class="text-right text-danger closeButton"> 
+                <div class="text-right closeButton"> 
                     <i class="fa fa-close" style="font-size:26px"></i> 
                 </div>
                 <!-- Name Section -->
@@ -787,7 +787,7 @@
 
                     </div>
 
-                    <div class="row4">
+                    <div id="row4">
 
                         <div class="capsule">
                             <div class="date">
@@ -1000,7 +1000,7 @@
                         
                     </div>
 
-                    <!-- Third Row Ends  -->
+                    <!-- Fourth Row Ends  -->
 
                 </div>
             </div>
@@ -1143,6 +1143,7 @@
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/script.js"></script>
+
 </body>
 
 </html>
